@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Vidhyarthi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="loader">
+            <div class="pencil-spinner"></div>
+            <p>Loading Attendance...</p>
+        </div>
+        <header class="mobile-header">
+            <h1>Attendance</h1>
+            <button class="hamburger" aria-label="Toggle menu">☰</button>
+        </header>
+        <aside class="sidebar">
+            <h2>Vidhyarthi</h2>
+            <button class="close-sidebar" aria-label="Close menu">×</button>
+            <nav>
+                <button title="Go to home" onclick="window.location.href='index.html'">🏠 Home</button>
+                <button title="View student details" onclick="window.location.href='profile.html'">👤 Profile</button>
+                <button title="View sessional marks" onclick="window.location.href='marks.html'">📊 Marks</button>
+                <button title="View syllabus" onclick="window.location.href='syllabus.html'">📚 Syllabus</button>
+                <button title="View attendance" onclick="window.location.href='attendance.html'">📅 Attendance</button>
+            </nav>
+            <button class="settings-btn" title="Open settings">⚙️ Settings</button>
+            <button class="logout-btn" title="Logout" id="logoutBtn">🚪 Logout</button>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <h1>Attendance</h1>
+            </header>
+            <section class="data-section">
+                <h2>Your Attendance</h2>
+                <select id="semesterSelect" aria-label="Select semester">
+                    <option value="">Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                </select>
+                <table id="attendanceTable">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Total Classes</th>
+                            <th>Classes Attended</th>
+                            <th>Attendance (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceBody">
+                        <!-- Attendance data will be populated here -->
+                    </tbody>
+                </table>
+                <div id="attendanceStatus" aria-live="polite"></div>
+            </section>
+        </main>
+    </div>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" title="Close settings">×</button>
+            <h2>Settings</h2>
+            <form id="settingsForm" class="form-grid">
+                <div class="form-item">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new password" minlength="6">
+                </div>
+                <div class="form-item">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm new password" minlength="6">
+                </div>
+                <div class="form-item">
+                    <label for="themeSelect">Theme</label>
+                    <select id="themeSelect">
+                        <option value="system">System</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="form-btn save-btn">Save</button>
+                    <button type="button" class="form-btn cancel-btn" id="cancelSettingsBtn">Cancel</button>
+                </div>
+            </form>
+            <div id="settingsStatus" class="message"></div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

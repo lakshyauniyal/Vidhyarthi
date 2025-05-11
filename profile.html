@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - Vidhyarthi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="mobile-header">
+            <h1>Student Profile</h1>
+            <button class="hamburger" aria-label="Toggle menu">☰</button>
+        </header>
+        <aside class="sidebar">
+            <h2>Vidhyarthi</h2>
+            <button class="close-sidebar" aria-label="Close menu">×</button>
+            <nav>
+                <button title="Go to home" onclick="window.location.href='index.html'">🏠 Home</button>
+                <button title="View student details" onclick="window.location.href='profile.html'">👤 Profile</button>
+                <button title="View sessional marks" onclick="window.location.href='marks.html'">📊 Marks</button>
+                <button title="View syllabus" onclick="window.location.href='syllabus.html'">📚 Syllabus</button>
+                <button title="View attendance" onclick="window.location.href='attendance.html'">📅 Attendance</button>
+            </nav>
+            <button class="settings-btn" title="Open settings">⚙️ Settings</button>
+            <button class="logout-btn" title="Logout" id="logoutBtn">🚪 Logout</button>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <h1>Student Profile</h1>
+                <a href="index.html" class="back-btn">Back to Dashboard</a>
+            </header>
+            <section class="profile-section">
+                <h2>Profile Details</h2>
+                <div class="form-grid" id="profileDetails">
+                    <div class="profile-item">
+                        <strong>Name:</strong>
+                        <span id="profileName">Loading...</span>
+                    </div>
+                    <div class="profile-item">
+                        <strong>Roll No:</strong>
+                        <span id="profileRollNo">Loading...</span>
+                    </div>
+                    <div class="profile-item">
+                        <strong>Father's Name:</strong>
+                        <span id="profileFatherName">Loading...</span>
+                    </div>
+                    <div class="profile-item">
+                        <strong>Branch:</strong>
+                        <span id="profileBranch">Loading...</span>
+                    </div>
+                    <div class="profile-item">
+                        <strong>Semester:</strong>
+                        <span id="profileSemester">Loading...</span>
+                    </div>
+                    <div class="profile-item">
+                        <strong>Mobile No:</strong>
+                        <span id="profileMobile">Loading...</span>
+                    </div>
+                    <div class="profile-item">
+                        <strong>Email:</strong>
+                        <span id="profileEmail">Loading...</span>
+                    </div>
+                </div>
+                <button class="edit-btn" id="editProfileBtn">Edit Profile</button>
+            </section>
+            <div id="editProfileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" id="closeModalBtn">×</span>
+                    <h2>Edit Profile</h2>
+                    <form class="form-grid" id="editProfileForm">
+                        <div class="form-item">
+                            <label for="editName">Name:</label>
+                            <input type="text" id="editName" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="editRollNo">Roll No:</label>
+                            <input type="text" id="editRollNo" required readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="editFatherName">Father's Name:</label>
+                            <input type="text" id="editFatherName" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="editBranch">Branch:</label>
+                            <select id="editBranch" required>
+                                <option value="COE">Computer Engineering</option>
+                            </select>
+                        </div>
+                        <div class="form-item">
+                            <label for="editSemester">Semester:</label>
+                            <select id="editSemester" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                        <div class="form-item">
+                            <label for="editMobile">Mobile No:</label>
+                            <input type="tel" id="editMobile" required pattern="[0-9]{10}">
+                        </div>
+                        <div class="form-item">
+                            <label for="editEmail">Email:</label>
+                            <input type="email" id="editEmail" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="form-btn save-btn">Update</button>
+                            <button type="button" class="form-btn cancel-btn" id="cancelEditBtn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" title="Close settings">×</button>
+            <h2>Settings</h2>
+            <form id="settingsForm" class="form-grid">
+                <div class="form-item">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new password" minlength="6">
+                </div>
+                <div class="form-item">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm new password" minlength="6">
+                </div>
+                <div class="form-item">
+                    <label for="themeSelect">Theme</label>
+                    <select id="themeSelect">
+                        <option value="system">System</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="form-btn save-btn">Save</button>
+                    <button type="button" class="form-btn cancel-btn" id="cancelSettingsBtn">Cancel</button>
+                </div>
+            </form>
+            <div id="settingsStatus" class="message"></div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,944 @@
+/* Combined Styles for Student Portal */
+
+/* Root Variables */
+:root {
+    --bg-color: #F6F9FC; /* Light blue-gray background */
+    --sidebar-bg: #FFFFFF; /* White sidebar */
+    --card-bg: #FFFFFF; /* White card background */
+    --text-color: #1A3557; /* Dark blue for text */
+    --accent-color: #3B82F6; /* Vibrant blue for accents */
+    --btn-bg: #3B82F6; /* Blue button background */
+    --btn-hover: #2563EB; /* Darker blue for hover */
+    --border-color: #E5E7EB; /* Light gray for borders */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    --notification-success-bg: #10B981; /* Green for success */
+    --notification-error-bg: #EF4444; /* Red for errors */
+    --border-radius: 8px; /* Rounded corners */
+    --transition: all 0.2s ease; /* Smooth transitions */
+    --error-color: #e74c3c; /* From signup.css, login.css */
+    --success-color: #27ae60; /* From signup.css */
+    --login-signup-bg: #f0f4f8; /* Background for login/signup */
+    --login-signup-btn-bg: #3498db; /* Button background for login/signup */
+    --login-signup-btn-hover: #2980b9; /* Button hover for login/signup */
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-color: #1F2937; /* Dark blue-gray background */
+    --sidebar-bg: #374151; /* Dark gray sidebar */
+    --card-bg: #374151; /* Dark gray card */
+    --text-color: #D1D5DB; /* Light gray text */
+    --accent-color: #60A5FA; /* Lighter blue for dark mode */
+    --btn-bg: #60A5FA; /* Lighter blue button */
+    --btn-hover: #3B82F6; /* Blue for hover */
+    --border-color: #4B5563; /* Darker gray border */
+}
+
+/* System Theme (follows OS preference) */
+@media (prefers-color-scheme: dark) {
+    [data-theme="system"] {
+        --bg-color: #1F2937;
+        --sidebar-bg: #374151;
+        --card-bg: #374151;
+        --text-color: #D1D5DB;
+        --accent-color: #60A5FA;
+        --btn-bg: #60A5FA;
+        --btn-hover: #3B82F6;
+        --border-color: #4B5563;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    [data-theme="system"] {
+        --bg-color: #F6F9FC;
+        --sidebar-bg: #FFFFFF;
+        --card-bg: #FFFFFF;
+        --text-color: #1A3557;
+        --accent-color: #3B82F6;
+        --btn-bg: #3B82F6;
+        --btn-hover: #2563EB;
+        --border-color: #E5E7EB;
+    }
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Default for dashboard pages */
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Login and Signup Page Body Centering */
+body:has(.login-container),
+body:has(.signup-container) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background: var(--login-signup-bg);
+}
+
+/* Common Dashboard Styles */
+.dashboard {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative; /* For loader positioning */
+}
+
+.mobile-header {
+    display: none;
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.mobile-header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.sidebar {
+    width: 240px;
+    background: var(--sidebar-bg);
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    z-index: 999;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.sidebar button {
+    padding: 12px 16px;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+}
+
+.sidebar button.active {
+    background: var(--accent-color);
+    color: #FFFFFF;
+    border-color: var(--accent-color);
+}
+
+.sidebar button:hover {
+    background: var(--accent-color);
+    color: #FFFFFF;
+    border-color: var(--accent-color);
+}
+
+.settings-btn,
+.logout-btn {
+    padding: 12px 16px;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 12px;
+}
+
+.logout-btn {
+    border-color: var(--notification-error-bg);
+    color: var(--notification-error-bg);
+}
+
+.logout-btn:hover {
+    background: var(--notification-error-bg);
+    color: #FFFFFF;
+}
+
+.settings-btn:hover {
+    background: var(--accent-color);
+    color: #FFFFFF;
+    border-color: var(--accent-color);
+}
+
+.close-sidebar {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-bottom: 12px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 24px;
+    margin-left: 240px;
+}
+
+.header {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-section,
+.data-section {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.form-section h2,
+.data-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.leave-form-grid {
+    display: grid;
+    grid-template-columns: 150px 400px 200px;
+    grid-template-rows: 1fr;
+    gap: 8px;
+    align-items: start;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea,
+.leave-form-grid input,
+.leave-form-grid textarea {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    background: #FFFFFF;
+    color: var(--text-color);
+    width: 100%;
+    transition: var(--transition);
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus,
+.leave-form-grid input:focus,
+.leave-form-grid textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-btn {
+    padding: 12px;
+    background: var(--btn-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.form-btn:hover {
+    background: var(--btn-hover);
+}
+
+.form-btn:disabled {
+    background: #D1D5DB;
+    cursor: not-allowed;
+}
+
+/* Leave Form Specific Styles */
+.leave-submit-btn {
+    max-width: 200px;
+    padding: 14px;
+    font-size: 16px;
+}
+
+.leave-reason-textarea {
+    max-width: 400px;
+    padding: 14px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+}
+
+/* Leave History Reason Column */
+.leave-reason-cell {
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive adjustments for leave form */
+@media (max-width: 768px) {
+    .leave-form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .leave-submit-btn {
+        max-width: 100%;
+    }
+    .leave-reason-textarea {
+        max-width: 100%;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: var(--accent-color);
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+tr:hover td {
+    background: #EFF6FF; /* Light blue hover effect */
+}
+
+.details-btn,
+.back-btn {
+    padding: 8px 12px;
+    background: var(--btn-bg);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.details-btn:hover,
+.back-btn:hover {
+    background: var(--btn-hover);
+}
+
+/* Loader Styles (Attendance, Marks) */
+.loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pencil-spinner {
+    width: 16px;
+    height: 48px;
+    background: var(--accent-color);
+    position: relative;
+    animation: spin 1s infinite linear;
+}
+
+.pencil-spinner::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #F4C430; /* Pencil tip */
+}
+
+.pencil-spinner::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 4px;
+    width: 8px;
+    height: 4px;
+    background: #D1D5DB; /* Eraser */
+}
+
+.loader p {
+    margin-top: 16px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Index Page (styles.css) */
+#uploadStatus {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--success-color);
+}
+
+#uploadStatus.error {
+    color: var(--error-color);
+}
+
+#studentDetails.form-grid div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#studentDetails.form-grid strong,
+#studentDetails.form-grid span {
+    display: inline;
+}
+
+/* Attendance Page */
+#attendanceStatus {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* Marks Page */
+#marksStatus {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+#semesterSelect {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    background: #FFFFFF;
+    color: var(--text-color);
+    width: 100%;
+    max-width: 220px;
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+
+#semesterSelect:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.total-row td {
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Profile Page */
+.profile-section {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.profile-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.profile-item {
+    padding: 12px;
+}
+
+.profile-item strong {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.profile-item span {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.edit-btn {
+    padding: 12px 16px;
+    background: var(--btn-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 16px;
+}
+
+.edit-btn:hover {
+    background: var(--btn-hover);
+}
+
+.edit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.open {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid var(--border-color);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal.open .modal-content {
+    transform: scale(1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    background: none;
+    border: none;
+}
+
+.close-btn:hover {
+    color: var(--accent-color);
+}
+
+.modal-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.modal .form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-item {
+    width: 100%;
+}
+
+.form-item label {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.form-item input,
+.form-item select {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    background: #FFFFFF;
+    color: var(--text-color);
+    width: 100%;
+    transition: var(--transition);
+}
+
+.form-item input:focus,
+.form-item select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.form-btn.save-btn {
+    background: var(--notification-success-bg);
+}
+
+.form-btn.save-btn:hover {
+    background: #059669;
+}
+
+.form-btn.cancel-btn {
+    background: var(--notification-error-bg);
+}
+
+.form-btn.cancel-btn:hover {
+    background: #DC2626;
+}
+
+.form-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Syllabus Page */
+#syllabusLink.form-btn {
+    padding: 8px 12px; /* Reduced height */
+    max-width: 200px; /* Prevent overly wide button */
+    margin: 0 auto; /* Center the button */
+}
+
+.form-grid select {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    background: #FFFFFF;
+    color: var(--text-color);
+    width: 100%;
+    transition: var(--transition);
+}
+
+.form-grid select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Settings Modal (Index Page) */
+#settingsStatus {
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+}
+
+#settingsStatus.error-message {
+    color: var(--error-color);
+}
+
+#settingsStatus.success-message {
+    color: var(--success-color);
+}
+
+/* Login Page */
+.login-container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-container h1 {
+    color: var(--login-signup-btn-bg);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--login-signup-bg);
+    color: var(--text-color);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--login-signup-btn-bg);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-btn:hover {
+    background: var(--login-signup-btn-hover);
+}
+
+.error-message {
+    color: var(--error-color);
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Signup Page */
+.signup-container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.signup-container h1 {
+    color: var(--login-signup-btn-bg);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--login-signup-btn-bg);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.signup-btn:hover {
+    background: var(--login-signup-btn-hover);
+}
+
+.message {
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+}
+
+.error-message {
+    color: var(--error-color);
+}
+
+.success-message {
+    color: var(--success-color);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .mobile-header {
+        display: flex;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 80%;
+        max-width: 280px;
+        border-right: none;
+        box-shadow: var(--shadow);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .close-sidebar {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        overflow-x: auto;
+        display: block;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .details-btn,
+    .back-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    #semesterSelect {
+        max-width: 100%;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-btn,
+    .edit-btn {
+        min-width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 400px;
+    }
+
+    #syllabusLink.form-btn {
+        max-width: 100%; /* Adjust for mobile */
+    }
+
+    #studentDetails.form-grid div {
+        white-space: normal; /* Allow wrapping on mobile for better readability */
+        overflow: visible;
+        text-overflow: clip;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container,
+    .signup-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
